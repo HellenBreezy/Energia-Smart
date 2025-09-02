@@ -1,0 +1,56 @@
+<dialog #dlg class="modal">
+      <form method="dialog" (submit)="close()"></form>
+
+      <div class="modal-card">
+        <header>
+          <h3>Calcular consumo — {{ title() }}</h3>
+          <button class="icon" (click)="close()" aria-label="Fechar">✕</button>
+        </header>
+
+        <section>
+          <div class="grid">
+            <label>
+              Quantidade
+              <input type="number" min="1" [formControl]="form.controls.quantity">
+            </label>
+
+            <label>
+              Horas por dia
+              <input type="number" min="0" step="0.5" [formControl]="form.controls.hoursPerDay">
+            </label>
+
+            <label>
+              Dias (mês)
+              <input type="number" min="1" max="31" [formControl]="form.controls.days">
+            </label>
+
+            <label>
+              Tarifa (R$/kWh)
+              <input type="number" min="0" step="0.01" [value]="tariff()" (input)="updateTariff($any($event.target).value)">
+            </label>
+          </div>
+
+          <div class="preview" *ngIf="valid()">
+            <div>
+              <div class="metric">
+                <div class="label">Potência</div>
+                <div class="value">{{ watts() }} W</div>
+              </div>
+              <div class="metric">
+                <div class="label">kWh/mês</div>
+                <div class="value">{{ kwhMonth() | number:'1.2-2' }}</div>
+              </div>
+              <div class="metric">
+                <div class="label">Custo/mês</div>
+                <div class="value">R$ {{ costMonth() | number:'1.2-2' }}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <button class="secondary" (click)="close()">Cancelar</button>
+          <button class="primary" [disabled]="!valid()" (click)="save()">Salvar</button>
+        </footer>
+      </div>
+    </dialog>

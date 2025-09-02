@@ -1,0 +1,15 @@
+<div class="wrap">
+  <h1>🏠 Energia Smart — Gamificado</h1>
+  <p class="subtitle">Clique nos ícones da casa para configurar o uso e ver o consumo estimado.</p>
+
+  <div class="grid">
+    <app-house-scene (select)="openModal($event)"></app-house-scene>
+    <app-summary-panel></app-summary-panel>
+  </div>
+
+  <!-- nome correto do componente modal -->
+  <app-modal
+    [applianceKey]="selectedKey()"
+    (closed)="selectedKey.set(null)">
+  </app-modal>
+</div>

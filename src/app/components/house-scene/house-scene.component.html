@@ -1,0 +1,18 @@
+ <div class="scene">
+      <!-- fundo "casa" -->
+      <div class="house">
+        <!-- Você pode trocar por uma imagem real da casa -->
+        <div class="room living"></div>
+        <div class="room kitchen"></div>
+        <div class="room bedroom"></div>
+        <div class="room laundry"></div>
+      </div>
+
+      <!-- hotspots -->
+      <button class="spot tv" (click)="pick('tv')" title="TV">📺</button>
+      <button class="spot fridge" (click)="pick('fridge')" title="Geladeira">🧊</button>
+      <button class="spot ac" (click)="pick('ac')" title="Ar-condicionado">❄️</button>
+      <button class="spot washing" (click)="pick('washing')" title="Máquina de lavar">🧺</button>
+      <button class="spot microwave" (click)="pick('microwave')" title="Micro-ondas">🍲</button>
+      <button class="spot pc" (click)="pick('pc')" title="Computador">💻</button>
+    </div>
