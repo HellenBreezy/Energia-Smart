@@ -1,3 +1,9 @@
-:host, main { display:block; min-height:100dvh; background: radial-gradient(1200px 600px at 0% 0%, #eef2ff 0%, #fff 50%); }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: Inter, Roboto, system-ui, Arial, sans-serif; }
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+main {
+  padding: 20px;
+}

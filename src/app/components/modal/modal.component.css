@@ -1,18 +1,120 @@
-.modal::backdrop { background: rgba(0,0,0,.45); }
-    .modal { border: none; padding: 0; border-radius: 16px; }
-    .modal-card { padding: 20px; min-width: 360px; max-width: 520px; }
-    header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    h3 { margin: 0; font-size: 1.1rem; }
-    .icon { background: transparent; border: none; font-size: 1.1rem; cursor: pointer; }
-    section { margin-top: 12px; }
-    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    label { display:flex; flex-direction:column; gap:6px; font-size:.9rem; }
-    input { padding:10px; border:1px solid #ddd; border-radius: 10px; }
-    .preview { margin-top: 10px; background:#f6f7fb; border:1px dashed #d8daf0; border-radius: 12px; padding: 12px; }
-    .metric { display:flex; align-items:baseline; gap:8px; }
-    .metric .label { color:#666; font-size:.85rem; }
-    .metric .value { font-weight:700; }
-    footer { display:flex; justify-content:flex-end; gap:10px; margin-top: 16px; }
-    .primary { background:#4f46e5; color:#fff; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; }
-    .primary:disabled { opacity:.5; cursor:not-allowed; }
-    .secondary { background:#f1f1f5; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; }
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1a5f7a 0%, #159895 100%);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #ffde59;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.appliance-icon {
+  font-size: 42px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ffde59;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.calculate-btn, .calculate-again-btn {
+  width: 100%;
+  padding: 15px;
+  background: #ffde59;
+  color: #1a5f7a;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.calculate-btn:hover, .calculate-again-btn:hover {
+  background: #ffd32a;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.result {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.result-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #ffde59;
+}
+
+.consumption-result {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffde59;
+  margin-bottom: 15px;
+}
+
+.eco-tip {
+  margin: 15px 0;
+  font-style: italic;
+  color: #a8dadc;
+}

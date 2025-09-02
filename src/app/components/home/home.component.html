@@ -1,15 +1,36 @@
-<div class="wrap">
-  <h1>🏠 Energia Smart — Gamificado</h1>
-  <p class="subtitle">Clique nos ícones da casa para configurar o uso e ver o consumo estimado.</p>
-
-  <div class="grid">
-    <app-house-scene (select)="openModal($event)"></app-house-scene>
-    <app-summary-panel></app-summary-panel>
+<div class="home-container">
+  <div class="welcome-section">
+    <div class="welcome-content">
+      <h1>Olá, {{ userName }}! 👋</h1>
+      <p>Bem-vinda ao Energia Smart - sua plataforma para consumo consciente de energia</p>
+    </div>
+    <div class="tip-of-the-day">
+      <div class="tip-icon">💡</div>
+      <div class="tip-content">
+        <h3>Dica do Dia</h3>
+        <p>{{ currentTip }}</p>
+      </div>
+    </div>
   </div>
 
-  <!-- nome correto do componente modal -->
-  <app-modal
-    [applianceKey]="selectedKey()"
-    (closed)="selectedKey.set(null)">
+  <app-summary-panel 
+    [totalConsumption]="totalConsumption" 
+    [ecoScore]="ecoScore"
+    [appliancesCount]="appliancesCount">
+  </app-summary-panel>
+
+  <div class="interactive-section">
+    <h2>Clique nos Eletrodomésticos</h2>
+    <p>Selecione um eletrodoméstico para calcular seu consumo de energia</p>
+    
+    <app-house-scene 
+      (applianceSelected)="onApplianceSelected($event)">
+    </app-house-scene>
+  </div>
+
+  <app-modal 
+    [appliance]="selectedAppliance"
+    [visible]="modalVisible"
+    (visibleChange)="onModalVisibleChange($event)">
   </app-modal>
 </div>

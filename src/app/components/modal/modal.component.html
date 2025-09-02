@@ -1,56 +1,25 @@
-<dialog #dlg class="modal">
-      <form method="dialog" (submit)="close()"></form>
-
-      <div class="modal-card">
-        <header>
-          <h3>Calcular consumo — {{ title() }}</h3>
-          <button class="icon" (click)="close()" aria-label="Fechar">✕</button>
-        </header>
-
-        <section>
-          <div class="grid">
-            <label>
-              Quantidade
-              <input type="number" min="1" [formControl]="form.controls.quantity">
-            </label>
-
-            <label>
-              Horas por dia
-              <input type="number" min="0" step="0.5" [formControl]="form.controls.hoursPerDay">
-            </label>
-
-            <label>
-              Dias (mês)
-              <input type="number" min="1" max="31" [formControl]="form.controls.days">
-            </label>
-
-            <label>
-              Tarifa (R$/kWh)
-              <input type="number" min="0" step="0.01" [value]="tariff()" (input)="updateTariff($any($event.target).value)">
-            </label>
-          </div>
-
-          <div class="preview" *ngIf="valid()">
-            <div>
-              <div class="metric">
-                <div class="label">Potência</div>
-                <div class="value">{{ watts() }} W</div>
-              </div>
-              <div class="metric">
-                <div class="label">kWh/mês</div>
-                <div class="value">{{ kwhMonth() | number:'1.2-2' }}</div>
-              </div>
-              <div class="metric">
-                <div class="label">Custo/mês</div>
-                <div class="value">R$ {{ costMonth() | number:'1.2-2' }}</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <footer>
-          <button class="secondary" (click)="close()">Cancelar</button>
-          <button class="primary" [disabled]="!valid()" (click)="save()">Salvar</button>
-        </footer>
-      </div>
-    </dialog>
+<div class="modal" [class.show]="visible">
+  <div class="modal-content" *ngIf="appliance">
+    <span class="close" (click)="onClose()">&times;</span>
+    
+    <div class="modal-header">
+      <span class="appliance-icon">{{ appliance.icon }}</span>
+      <h2 class="modal-title">{{ appliance.name }}</h2>
+      <p>Informe o tempo de uso para calcular o consumo</p>
+    </div>
+    
+    <div class="input-group">
+      <label for="hours">Tempo de uso (horas):</label>
+      <input type="number" id="hours" [(ngModel)]="hours" min="0" step="0.5" placeholder="Ex: 2.5">
+    </div>
+    
+    <button class="calculate-btn" (click)="onCalculate()">Calcular Consumo</button>
+    
+    <div class="result" *ngIf="calculated">
+      <h3 class="result-title">Consumo de Energia</h3>
+      <div class="consumption-result">{{ consumption.toFixed(2) }} kWh</div>
+      <p class="eco-tip">{{ appliance.description }}</p>
+      <button class="calculate-again-btn" (click)="onCalculateAgain()">Calcular Novamente</button>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,14 @@
- <div class="scene">
-      <!-- fundo "casa" -->
-      <div class="house">
-        <!-- Você pode trocar por uma imagem real da casa -->
-        <div class="room living"></div>
-        <div class="room kitchen"></div>
-        <div class="room bedroom"></div>
-        <div class="room laundry"></div>
+<div class="house-scene">
+  <div class="house">
+    <div class="room">
+      <div class="appliance" *ngFor="let appliance of appliances" 
+           [style.top]="appliance.position.top"
+           [style.left]="appliance.position.left"
+           [style.background]="appliance.position.background"
+           (click)="pick(appliance.id)">
+        <span class="appliance-icon">{{ appliance.icon }}</span>
+        <span class="appliance-name">{{ appliance.name }}</span>
       </div>
-
-      <!-- hotspots -->
-      <button class="spot tv" (click)="pick('tv')" title="TV">📺</button>
-      <button class="spot fridge" (click)="pick('fridge')" title="Geladeira">🧊</button>
-      <button class="spot ac" (click)="pick('ac')" title="Ar-condicionado">❄️</button>
-      <button class="spot washing" (click)="pick('washing')" title="Máquina de lavar">🧺</button>
-      <button class="spot microwave" (click)="pick('microwave')" title="Micro-ondas">🍲</button>
-      <button class="spot pc" (click)="pick('pc')" title="Computador">💻</button>
     </div>
+  </div>
+</div>

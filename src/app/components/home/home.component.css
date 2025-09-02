@@ -1,5 +1,95 @@
-.wrap { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
-    h1 { margin: 0 0 4px; font-size: clamp(22px, 3vw, 28px); }
-    .subtitle { color:#6b7280; margin: 0 0 18px; }
-    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
-    @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
+.home-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.welcome-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.welcome-content h1 {
+  font-size: 2.5rem;
+  color: #2c5530;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.welcome-content p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+.tip-of-the-day {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 300px;
+}
+
+.tip-icon {
+  font-size: 2.5rem;
+  margin-right: 15px;
+}
+
+.tip-content h3 {
+  margin: 0 0 5px 0;
+  color: #2c5530;
+  font-size: 1.2rem;
+}
+
+.tip-content p {
+  margin: 0;
+  color: #555;
+  font-style: italic;
+}
+
+.interactive-section {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.interactive-section h2 {
+  color: #2c5530;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.interactive-section p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .welcome-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .welcome-content h1 {
+    font-size: 2rem;
+  }
+
+  .tip-of-the-day {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tip-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

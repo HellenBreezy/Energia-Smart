@@ -1,37 +1,41 @@
- <div class="card">
-      <header>
-        <h3>Seu consumo</h3>
-        <button class="link" (click)="clear()" *ngIf="hasItems()">Limpar</button>
-      </header>
-
-      <div *ngIf="!hasItems()" class="empty">Clique nos itens da casa para começar ✨</div>
-
-      <ul class="list" *ngIf="hasItems()">
-        <li *ngFor="let e of svc.entries()">
-          <div class="name">{{ e.name }}</div>
-          <div class="meta">
-            <span>{{ e.quantity }}x • {{ e.hoursPerDay }}h/dia • {{ e.days }} dias</span>
-            <span>{{ e.watts }} W</span>
-          </div>
-          <div class="numbers">
-            <div class="kwh">{{ e.kwhMonth | number:'1.2-2' }} kWh/mês</div>
-            <div class="cost">R$ {{ e.costMonth | number:'1.2-2' }}</div>
-          </div>
-          <button class="remove" (click)="svc.remove(e.key)" aria-label="Remover">🗑️</button>
-        </li>
-      </ul>
-
-      <footer *ngIf="hasItems()">
-        <div class="totals">
-          <div>
-            <div class="label">Total kWh/mês</div>
-            <div class="value">{{ totals().kwh | number:'1.2-2' }}</div>
-          </div>
-          <div>
-            <div class="label">Total R$/mês</div>
-            <div class="value">R$ {{ totals().cost | number:'1.2-2' }}</div>
-          </div>
-        </div>
-        <div class="tariff">Tarifa atual: <b>R$ {{ svc.tariff() | number:'1.2-2' }}/kWh</b></div>
-      </footer>
+<div class="summary-panel">
+  <h2>Resumo do Seu Consumo</h2>
+  
+  <div class="summary-grid">
+    <div class="summary-card consumption">
+      <div class="card-icon">⚡</div>
+      <div class="card-content">
+        <h3>Consumo Total</h3>
+        <div class="value">{{ totalConsumption.toFixed(2) }} kWh</div>
+        <p class="comparison">{{ getConsumptionComparison() }}</p>
+      </div>
     </div>
+
+    <div class="summary-card score">
+      <div class="card-icon">{{ getScoreIcon() }}</div>
+      <div class="card-content">
+        <h3>Pontuação Eco</h3>
+        <div class="value" [style.color]="getScoreColor()">{{ ecoScore }}</div>
+        <p class="status">{{ getScoreMessage() }}</p>
+      </div>
+    </div>
+
+    <div class="summary-card appliances">
+      <div class="card-icon">🏠</div>
+      <div class="card-content">
+        <h3>Eletrodomésticos</h3>
+        <div class="value">{{ appliancesCount }}</div>
+        <p class="label">cadastrados</p>
+      </div>
+    </div>
+
+    <div class="summary-card savings">
+      <div class="card-icon">💰</div>
+      <div class="card-content">
+        <h3>Economia Estimada</h3>
+        <div class="value">R$ {{ (totalConsumption * 0.75).toFixed(2) }}</div>
+        <p class="period">este mês</p>
+      </div>
+    </div>
+  </div>
+</div>
