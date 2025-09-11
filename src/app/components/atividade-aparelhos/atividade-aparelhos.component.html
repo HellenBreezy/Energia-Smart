@@ -1,0 +1,22 @@
+<div class="appliance-container">
+  <h2>🔌 Desligue os aparelhos em stand-by!</h2>
+  <p>Clique nos aparelhos para economizar energia.</p>
+
+  <div class="appliances">
+    <div *ngFor="let device of devices; let i = index" 
+         class="device" 
+         [class.off]="!device.on" 
+         (click)="toggleDevice(i)">
+      <img [src]="device.on ? device.imgOn : device.imgOff" 
+           [alt]="device.name" 
+           class="device-img">
+      <p>{{ device.name }}</p>
+    </div>
+  </div>
+
+  <div class="tips" *ngIf="currentTip">
+    <p>{{ currentTip }}</p>
+  </div>
+
+  <button class="reset-btn" (click)="resetDevices()">🔄 Reiniciar</button>
+</div>

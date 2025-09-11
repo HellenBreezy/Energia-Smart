@@ -1,0 +1,70 @@
+.appliance-container {
+  max-width: 800px;
+  margin: 30px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.appliance-container h2 {
+  font-size: 1.8rem;
+  color: #2c5530;
+  margin-bottom: 10px;
+}
+
+.appliance-container p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.appliances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.device {
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.device:hover {
+  transform: translateY(-5px);
+}
+
+.device-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.device.off img {
+  filter: grayscale(100%) brightness(60%);
+}
+
+.tips {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #2c5530;
+}
+
+.reset-btn {
+  padding: 12px 20px;
+  background: #ffde59;
+  color: #1a5f7a;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: #ffd32a;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}

@@ -13,6 +13,16 @@
     </div>
   </div>
 
+  <app-modal 
+  [appliance]="selectedAppliance"
+  [visible]="modalVisible"
+  (visibleChange)="onModalVisibleChange($event)">
+</app-modal>
+
+<div class="selected-appliance-info" *ngIf="selectedAppliance">
+  <p>📍 Localizado na: {{ getApplianceRoom(selectedAppliance.id) }}</p>
+</div>
+
   <app-summary-panel 
     [totalConsumption]="totalConsumption" 
     [ecoScore]="ecoScore"

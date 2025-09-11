@@ -1,0 +1,19 @@
+<div class="lamp-container">
+  <h2>💡 Apague as lâmpadas!</h2>
+  <p>Clique para apagar e veja dicas de economia.</p>
+
+  <div class="lamps">
+    <div *ngFor="let lamp of lamps; let i = index" 
+         class="lamp" 
+         [class.off]="!lamp.on" 
+         (click)="toggleLamp(i)">
+      {{ lamp.on ? '💡' : '⚫' }}
+    </div>
+  </div>
+
+  <div class="tips" *ngIf="currentTip">
+    <p>{{ currentTip }}</p>
+  </div>
+
+  <button class="reset-btn" (click)="resetLamps()">Reiniciar</button>
+</div>

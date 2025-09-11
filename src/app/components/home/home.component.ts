@@ -76,4 +76,11 @@ export class HomeComponent implements OnInit {
     if (this.ecoScore >= 400) return 'Bom! Você pode melhorar ainda mais.';
     return 'Há espaço para melhorar. Tente economizar mais energia.';
   }
+
+  // Adicione esta função ao HomeComponent
+getApplianceRoom(applianceId: string): string {
+  const houseScene = new HouseSceneComponent();
+  const appliance = houseScene.appliances.find(a => a.id === applianceId);
+  return appliance ? appliance.room : 'Cômodo não especificado';
+}
 }

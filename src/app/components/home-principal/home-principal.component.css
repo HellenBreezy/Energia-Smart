@@ -1,0 +1,51 @@
+.home-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  color: #2c5530;
+  margin-bottom: 15px;
+}
+
+.home-container p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.activities {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.activity-card {
+  background: #ffde59;
+  color: #1a5f7a;
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.activity-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.activity-card p {
+  font-size: 0.95rem;
+  color: #2c5530;
+}
