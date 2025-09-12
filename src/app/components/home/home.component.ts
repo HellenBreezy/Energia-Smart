@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HouseSceneComponent, Appliance } from '../house-scene/house-scene.component';
 import { ModalComponent } from '../modal/modal.component';
@@ -13,10 +13,12 @@ import { EnergyService } from '../../services/energy.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @Input() appliances: Appliance[] = [];
+
   userName: string = 'Hellen';
   totalConsumption: number = 0;
   ecoScore: number = 1000;
-  appliancesCount: number = 8;
+  appliancesCount: number = this.appliances.length;
   
   selectedAppliance: Appliance | null = null;
   modalVisible: boolean = false;
@@ -36,10 +38,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.energyService.totalConsumption$.subscribe(consumption => {
       this.totalConsumption = consumption;
-    });
-
-    this.energyService.ecoScore$.subscribe(score => {
-      this.ecoScore = score;
     });
 
     this.currentTip = this.getRandomTip();
@@ -63,24 +61,10 @@ export class HomeComponent implements OnInit {
     return this.tips[randomIndex];
   }
 
-  getScoreColor(): string {
-    if (this.ecoScore >= 800) return '#4caf50';
-    if (this.ecoScore >= 600) return '#ffc107';
-    if (this.ecoScore >= 400) return '#ff9800';
-    return '#f44336';
-  }
-
-  getScoreMessage(): string {
-    if (this.ecoScore >= 800) return 'Excelente! Você é um herói da energia!';
-    if (this.ecoScore >= 600) return 'Muito bom! Continue economizando!';
-    if (this.ecoScore >= 400) return 'Bom! Você pode melhorar ainda mais.';
-    return 'Há espaço para melhorar. Tente economizar mais energia.';
-  }
-
   // Adicione esta função ao HomeComponent
-getApplianceRoom(applianceId: string): string {
-  const houseScene = new HouseSceneComponent();
-  const appliance = houseScene.appliances.find(a => a.id === applianceId);
-  return appliance ? appliance.room : 'Cômodo não especificado';
-}
+  getApplianceRoom(applianceId: string): string {
+    const houseScene = new HouseSceneComponent();
+    const appliance = houseScene.appliances.find(a => a.id === applianceId);
+    return appliance ? appliance.room : 'Cômodo não especificado';
+  }
 }

@@ -24,9 +24,8 @@
 </div>
 
   <app-summary-panel 
-    [totalConsumption]="totalConsumption" 
-    [ecoScore]="ecoScore"
-    [appliancesCount]="appliancesCount">
+  [totalConsumption]="totalConsumption" 
+  [appliancesCount]="appliancesCount">
   </app-summary-panel>
 
   <div class="interactive-section">
@@ -37,10 +36,4 @@
       (applianceSelected)="onApplianceSelected($event)">
     </app-house-scene>
   </div>
-
-  <app-modal 
-    [appliance]="selectedAppliance"
-    [visible]="modalVisible"
-    (visibleChange)="onModalVisibleChange($event)">
-  </app-modal>
 </div>

@@ -15,9 +15,13 @@ export class ModalComponent {
   @Input() appliance: Appliance | null = null;
   @Input() visible = false;
   @Output() visibleChange = new EventEmitter<boolean>();
-  
-  hours: number = 0;
+
+  power: number = 0;
+  hoursPerDay: number = 0;
+  daysPerMonth: number = 30;
+
   consumption: number = 0;
+  cost: number = 0;
   calculated: boolean = false;
 
   constructor(private energyService: EnergyService) {}
@@ -28,21 +32,27 @@ export class ModalComponent {
     this.resetForm();
   }
 
+  isFormValid(): boolean {
+  return !!this.appliance && this.power > 0 && this.hoursPerDay > 0 && this.daysPerMonth > 0;
+}
+
   onCalculate() {
-    if (this.hours > 0 && this.appliance) {
+    if (this.isFormValid()) {
       this.consumption = this.energyService.calculateConsumption(
-        this.appliance.power, 
-        this.hours
+        this.power, // em W
+        this.hoursPerDay,
+        this.daysPerMonth
       );
-      
-      // Salvar o cálculo
+
+      this.cost = this.energyService.calculateCost(this.consumption);
+
       this.energyService.addCalculation({
-        appliance: this.appliance.name,
-        power: this.appliance.power,
-        hours: this.hours,
-        consumption: this.consumption
+        appliance: this.appliance!.name,
+        power: this.power, // armazenamos em W
+        hoursPerDay: this.hoursPerDay,
+        daysPerMonth: this.daysPerMonth
       });
-      
+
       this.calculated = true;
     }
   }
@@ -52,8 +62,11 @@ export class ModalComponent {
   }
 
   private resetForm() {
-    this.hours = 0;
+    this.power = this.appliance?.power || 0;
+    this.hoursPerDay = 0;
+    this.daysPerMonth = 30;
     this.consumption = 0;
+    this.cost = 0;
     this.calculated = false;
   }
 }

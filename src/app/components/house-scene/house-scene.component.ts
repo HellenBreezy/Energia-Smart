@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface Appliance {
@@ -25,9 +25,10 @@ export interface Appliance {
 export class HouseSceneComponent {
   @Output() applianceSelected = new EventEmitter<string>();
 
+
   // Imagem de fundo com planta baixa representando os cômodos
   houseBackgroundImage = '/images/home.png';
-
+  
   appliances: Appliance[] = [
     {
       id: 'tv',
@@ -43,7 +44,7 @@ export class HouseSceneComponent {
       room: 'Sala de Estar'
     },
     {
-      id: 'fridge',
+      id: 'geladeira',
       name: 'Geladeira',
       icon: '/images/geladeira.png',
       power: 0.2,
@@ -56,7 +57,7 @@ export class HouseSceneComponent {
       room: 'Cozinha'
     },
     {
-      id: 'shower',
+      id: 'Chuveiro',
       name: 'Chuveiro',
       icon: '/images/chuveiro.png',
       power: 5.0,
@@ -69,7 +70,7 @@ export class HouseSceneComponent {
       room: 'Banheiro'
     },
     {
-      id: 'washing',
+      id: 'maquinaLavar',
       name: 'Máquina de Lavar',
       icon: '/images/maquina-de-lavar.png',
       power: 1.0,
@@ -82,7 +83,7 @@ export class HouseSceneComponent {
       room: 'Lavanderia'
     },
     {
-      id: 'lamp',
+      id: 'lampada',
       name: 'Lâmpada',
       icon: '/images/lampada.png',
       power: 0.01,
@@ -95,7 +96,7 @@ export class HouseSceneComponent {
       room: 'Quarto'
     },
     {
-      id: 'ac',
+      id: 'arCondicionado',
       name: 'Ar-Condicionado',
       icon: '/images/ar-condicionado.png',
       power: 1.5,
@@ -108,7 +109,7 @@ export class HouseSceneComponent {
       room: 'Sala de Estar'
     },
     {
-      id: 'computer',
+      id: 'computador',
       name: 'Computador',
       icon: '/images/computador.png',
       power: 0.1,
@@ -121,7 +122,7 @@ export class HouseSceneComponent {
       room: 'Quarto'
     },
     {
-      id: 'microwave',
+      id: 'microondas',
       name: 'Micro-ondas',
       icon: '/images/microondas.png',
       power: 1.2,
@@ -134,7 +135,7 @@ export class HouseSceneComponent {
       room: 'Cozinha'
     },
     {
-      id: 'blender',
+      id: 'liquidificador',
       name: 'Liquidificador',
       icon: '/images/liquidificador.png',
       power: 0.3,
@@ -147,7 +148,7 @@ export class HouseSceneComponent {
       room: 'Cozinha'
     },
     {
-      id: 'hairdryer',
+      id: 'secadorCabelo',
       name: 'Secador de Cabelo',
       icon: '/images/secador-de-cabelo.png',
       power: 1.8,

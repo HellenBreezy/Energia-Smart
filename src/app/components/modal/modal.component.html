@@ -3,21 +3,37 @@
     <span class="close" (click)="onClose()">&times;</span>
     
     <div class="modal-header">
-      <span class="appliance-icon">{{ appliance.icon }}</span>
+      <span class="appliance-icon">
+            <img [src]="appliance.icon" alt="{{ appliance.name }}" />
+          </span>
+      <!-- <span class="appliance-icon">{{ appliance.icon }}</span> -->
       <h2 class="modal-title">{{ appliance.name }}</h2>
-      <p>Informe o tempo de uso para calcular o consumo</p>
+      <p>Informe os dados para calcular o consumo</p>
     </div>
     
     <div class="input-group">
-      <label for="hours">Tempo de uso (horas):</label>
-      <input type="number" id="hours" [(ngModel)]="hours" min="0" step="0.5" placeholder="Ex: 2.5">
+      <label for="power">Potência do aparelho (W):</label>
+      <input type="number" id="power" [(ngModel)]="power" min="0" step="1" placeholder="Ex: 150">
+    </div>
+
+    <div class="input-group">
+      <label for="hours">Horas de uso por dia:</label>
+      <input type="number" id="hours" [(ngModel)]="hoursPerDay" min="0" step="0.5" placeholder="Ex: 2.5">
+    </div>
+
+    <div class="input-group">
+      <label for="days">Dias de uso por mês:</label>
+      <input type="number" id="days" [(ngModel)]="daysPerMonth" min="0" step="1" placeholder="Ex: 20">
     </div>
     
-    <button class="calculate-btn" (click)="onCalculate()">Calcular Consumo</button>
+    <button class="calculate-btn" 
+            (click)="onCalculate()" 
+            [disabled]="!isFormValid()">Calcular Consumo</button>
     
     <div class="result" *ngIf="calculated">
       <h3 class="result-title">Consumo de Energia</h3>
       <div class="consumption-result">{{ consumption.toFixed(2) }} kWh</div>
+      <div class="cost-result">Gasto estimado: R$ {{ cost.toFixed(2) }}</div>
       <p class="eco-tip">{{ appliance.description }}</p>
       <button class="calculate-again-btn" (click)="onCalculateAgain()">Calcular Novamente</button>
     </div>
