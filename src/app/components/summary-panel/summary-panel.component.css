@@ -1,5 +1,6 @@
 .summary-panel {
   margin: 30px 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .summary-panel h2 {
@@ -16,7 +17,7 @@
 }
 
 .summary-card {
-  background: white;
+  background: #fff;
   border-radius: 15px;
   padding: 25px;
   display: flex;
@@ -56,30 +57,17 @@
   color: #666;
 }
 
-/* Cores específicas para cada cartão */
-.summary-card.consumption {
-  border-left: 4px solid #ff9800;
-}
-
-.summary-card.appliances {
-  border-left: 4px solid #2196f3;
-}
-
-.summary-card.savings {
-  border-left: 4px solid #4caf50;
-}
+/* Borda colorida para cada cartão */
+.summary-card.consumption { border-left: 4px solid #ff9800; }
+.summary-card.appliances { border-left: 4px solid #2196f3; }
 
 @media (max-width: 768px) {
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
   .summary-card {
     padding: 20px;
     flex-direction: column;
     text-align: center;
   }
-  
   .card-icon {
     margin-right: 0;
     margin-bottom: 15px;
@@ -87,7 +75,5 @@
 }
 
 @media (max-width: 480px) {
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
+  .summary-grid { grid-template-columns: 1fr; }
 }

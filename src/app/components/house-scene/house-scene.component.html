@@ -1,47 +1,11 @@
-<div class="house-scene">
-  <div class="house-container">
-    <div class="house" [style.background-image]="'url(' + houseBackgroundImage + ')'">
-      <div class="room-overlay">
-        <!-- Eletrodomésticos -->
-        <div class="appliance" *ngFor="let appliance of appliances" 
-             [style.top]="appliance.position.top"
-             [style.left]="appliance.position.left"
-             [style.background]="appliance.position.background"
-             (click)="pick(appliance.id)"
-             [title]="appliance.name + ' - ' + appliance.room">
-          <span class="appliance-icon">
-            <img [src]="appliance.icon" alt="{{ appliance.name }}" />
-          </span>
-          <span class="appliance-name">{{ appliance.name }}</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Legenda dos cômodos -->
-    <div class="rooms-legend">
-      <h3>🏠 Cômodos da Casa</h3>
-      <div class="legend-items">
-        <div class="legend-item">
-          <span class="legend-color" style="background: #e8f5e8;"></span>
-          <span>Sala de Estar</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background: #fff3e0;"></span>
-          <span>Cozinha</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background: #e8eaf6;"></span>
-          <span>Quarto</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background: #e0f2f1;"></span>
-          <span>Banheiro</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background: #f3e5f5;"></span>
-          <span>Lavanderia</span>
-        </div>
-      </div>
-    </div>
+<div class="house-scene-container" [style.background-image]="'url(' + houseBackgroundImage + ')'">
+  <div *ngFor="let appliance of appliances"
+       class="appliance"
+       [style.top]="appliance.position.top"
+       [style.left]="appliance.position.left"
+       [style.background]="appliance.position.background"
+       (click)="pick(appliance.id)">
+    <img class="appliance-icon" [src]="appliance.icon" [alt]="appliance.name" />
+    <span>{{ appliance.name }}</span>
   </div>
 </div>

@@ -1,4 +1,8 @@
 <div class="home-container">
+
+  <app-header title="Detalhes do Eletrodoméstico"></app-header>
+
+  <!-- Seção de boas-vindas -->
   <div class="welcome-section">
     <div class="welcome-content">
       <h1>Olá, {{ userName }}! 👋</h1>
@@ -13,26 +17,39 @@
     </div>
   </div>
 
-  <app-modal 
-  [appliance]="selectedAppliance"
-  [visible]="modalVisible"
-  (visibleChange)="onModalVisibleChange($event)">
-</app-modal>
+  <!-- Modal de detalhe do appliance -->
+  <app-modal
+    [appliance]="selectedAppliance"
+    [visible]="modalVisibleDetail"
+    (visibleChange)="onModalVisibleChange($event)">
+  </app-modal>
 
-<div class="selected-appliance-info" *ngIf="selectedAppliance">
-  <p>📍 Localizado na: {{ getApplianceRoom(selectedAppliance.id) }}</p>
-</div>
+  <!-- Modal de seleção de appliances -->
+  <app-modal-appliance-selector
+    *ngIf="modalVisibleSelector && availableAppliances?.length"
+    [appliances]="availableAppliances"
+    (selectionConfirmed)="onApplianceSelectionConfirmed($event)"
+    (close)="modalVisibleSelector = false">
+  </app-modal-appliance-selector>
 
+  <!-- Informações do appliance selecionado -->
+  <div class="selected-appliance-info" *ngIf="selectedAppliance">
+    <p>📍 Localizado na: {{ getApplianceRoom(selectedAppliance.id) }}</p>
+  </div>
+
+  <!-- Painel de resumo -->
   <app-summary-panel 
-  [totalConsumption]="totalConsumption" 
-  [appliancesCount]="appliancesCount">
+    [totalConsumption]="totalConsumption" 
+    [appliancesCount]="appliancesCount">
   </app-summary-panel>
 
+  <!-- Seção interativa com HouseScene -->
   <div class="interactive-section">
     <h2>Clique nos Eletrodomésticos</h2>
     <p>Selecione um eletrodoméstico para calcular seu consumo de energia</p>
     
-    <app-house-scene 
+    <app-house-scene
+      [appliances]="displayedAppliances"
       (applianceSelected)="onApplianceSelected($event)">
     </app-house-scene>
   </div>

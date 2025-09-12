@@ -6,17 +6,8 @@
       <div class="card-icon">⚡</div>
       <div class="card-content">
         <h3>Consumo Total</h3>
-        <div class="value">{{ totalConsumption.toFixed(2) }} kWh</div>
+        <div class="value">{{ (totalConsumption * 1000).toFixed(0) }} W</div>
         <p class="comparison">{{ getConsumptionComparison() }}</p>
-      </div>
-    </div>
-
-    <div class="summary-card score">
-      <div class="card-icon">{{ getScoreIcon() }}</div>
-      <div class="card-content">
-        <h3>Pontuação Eco</h3>
-        <div class="value" [style.color]="getScoreColor()">{{ ecoScore }}</div>
-        <p class="status">{{ getScoreMessage() }}</p>
       </div>
     </div>
 
@@ -29,13 +20,14 @@
       </div>
     </div>
 
-    <div class="summary-card savings">
-      <div class="card-icon">💰</div>
+    <div class="summary-card expenses">
+      <div class="card-icon">💸</div>
       <div class="card-content">
-        <h3>Economia Estimada</h3>
+        <h3>Valor Gasto</h3>
         <div class="value">R$ {{ (totalConsumption * 0.75).toFixed(2) }}</div>
         <p class="period">este mês</p>
       </div>
     </div>
+
   </div>
 </div>

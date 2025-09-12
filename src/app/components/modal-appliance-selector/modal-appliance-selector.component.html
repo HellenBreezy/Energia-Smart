@@ -1,0 +1,23 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>Quais eletrodomésticos você tem?</h2>
+
+    <div *ngIf="appliances?.length; else noAppliances" class="appliance-list">
+      <div *ngFor="let appliance of appliances" class="appliance-item">
+        <input type="checkbox" [(ngModel)]="appliance.selected" id="{{ appliance.id }}">
+        <label for="{{ appliance.id }}">
+          <img class="appliance-icon" [src]="appliance.icon" alt="{{ appliance.name }}" width="40" height="40">
+          {{ appliance.name }}
+        </label>
+      </div>
+    </div>
+
+    <ng-template #noAppliances>
+      <p>Carregando eletrodomésticos...</p>
+    </ng-template>
+
+    <div class="modal-actions">
+      <button class="confirmed-btn" (click)="confirmSelection()">Confirmar</button>
+    </div>
+  </div>
+</div>
