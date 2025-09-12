@@ -20,6 +20,9 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border: 2px solid #ddd;
   flex-shrink: 0;
+  background-image: url('/images/home.png'); /* caminho da imagem */
+  background-size: cover; /* cobre toda a div */
+  background-position: center; /* centraliza a imagem */
 }
 
 .room-overlay {
@@ -57,10 +60,10 @@
   z-index: 10;
 }
 
-.appliance-icon {
-  font-size: 20px;
-  margin-bottom: 4px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+.appliance-icon img {
+  width: 40px;   /* ajuste o tamanho que quiser */
+  height: 40px;
+  object-fit: contain;
 }
 
 .appliance-name {

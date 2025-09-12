@@ -32,7 +32,7 @@ export class HouseSceneComponent {
     {
       id: 'tv',
       name: 'TV',
-      icon: '📺',
+      icon: '/images/tv.png',
       power: 0.15,
       description: 'Televisores modernos consomem menos energia no modo de espera.',
       position: {
@@ -45,7 +45,7 @@ export class HouseSceneComponent {
     {
       id: 'fridge',
       name: 'Geladeira',
-      icon: '❄️',
+      icon: '/images/geladeira.png',
       power: 0.2,
       description: 'Geladeiras consomem mais energia quando a porta é aberta frequentemente.',
       position: {
@@ -58,7 +58,7 @@ export class HouseSceneComponent {
     {
       id: 'shower',
       name: 'Chuveiro',
-      icon: '🚿',
+      icon: '/images/chuveiro.png',
       power: 5.0,
       description: 'Chuveiros elétricos são uns dos maiores consumidores de energia.',
       position: {
@@ -71,7 +71,7 @@ export class HouseSceneComponent {
     {
       id: 'washing',
       name: 'Máquina de Lavar',
-      icon: '🧺',
+      icon: '/images/maquina-de-lavar.png',
       power: 1.0,
       description: 'Use a máquina com carga completa para economizar energia e água.',
       position: {
@@ -84,7 +84,7 @@ export class HouseSceneComponent {
     {
       id: 'lamp',
       name: 'Lâmpada',
-      icon: '💡',
+      icon: '/images/lampada.png',
       power: 0.01,
       description: 'Lâmpadas LED consomem até 80% menos que as incandescentes.',
       position: {
@@ -97,7 +97,7 @@ export class HouseSceneComponent {
     {
       id: 'ac',
       name: 'Ar-Condicionado',
-      icon: '❄️',
+      icon: '/images/ar-condicionado.png',
       power: 1.5,
       description: 'Manter o ar-condicionado a 23°C economiza energia.',
       position: {
@@ -110,7 +110,7 @@ export class HouseSceneComponent {
     {
       id: 'computer',
       name: 'Computador',
-      icon: '💻',
+      icon: '/images/computador.png',
       power: 0.1,
       description: 'Configure modo de economia de energia no seu computador.',
       position: {
@@ -123,7 +123,7 @@ export class HouseSceneComponent {
     {
       id: 'microwave',
       name: 'Micro-ondas',
-      icon: '🍲',
+      icon: '/images/microondas.png',
       power: 1.2,
       description: 'Desligue da tomada quando não estiver usando.',
       position: {
@@ -136,7 +136,7 @@ export class HouseSceneComponent {
     {
       id: 'blender',
       name: 'Liquidificador',
-      icon: '🥤',
+      icon: '/images/liquidificador.png',
       power: 0.3,
       description: 'Use por curtos períodos para economizar energia.',
       position: {
@@ -149,7 +149,7 @@ export class HouseSceneComponent {
     {
       id: 'hairdryer',
       name: 'Secador de Cabelo',
-      icon: '💇‍♀️',
+      icon: '/images/secador-de-cabelo.png',
       power: 1.8,
       description: 'Use na potência mais baixa possível.',
       position: {

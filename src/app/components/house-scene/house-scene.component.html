@@ -9,7 +9,9 @@
              [style.background]="appliance.position.background"
              (click)="pick(appliance.id)"
              [title]="appliance.name + ' - ' + appliance.room">
-          <span class="appliance-icon">{{ appliance.icon }}</span>
+          <span class="appliance-icon">
+            <img [src]="appliance.icon" alt="{{ appliance.name }}" />
+          </span>
           <span class="appliance-name">{{ appliance.name }}</span>
         </div>
       </div>
