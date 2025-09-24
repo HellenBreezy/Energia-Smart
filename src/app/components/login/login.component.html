@@ -1,0 +1,31 @@
+<div class="home-container">
+
+  <!-- Se o aluno ainda não digitou o nome -->
+  <div *ngIf="!userName" class="name-input-section">
+    <h2>👋 Bem-vindo!</h2>
+    <p>Digite seu nome para começar:</p>
+    <input 
+      type="text" 
+      [(ngModel)]="tempName" 
+      placeholder="Seu nome aqui" 
+    />
+    <button (click)="onClick()">Continuar</button>
+  </div>
+
+  <!-- Se já tem nome salvo -->
+  <div *ngIf="userName" class="welcome-section">
+    <div class="welcome-content">
+      <h1>Olá, {{ userName }}! 👋</h1>
+      <p>Bem-vindo ao Energia Smart - sua plataforma para consumo consciente de energia</p>
+    </div>
+
+    <!-- Dica do dia -->
+    <div class="tip-of-the-day">
+      <div class="tip-icon">💡</div>
+      <div class="tip-content">
+        <h3>Dica do Dia</h3>
+        <p>{{ currentTip }}</p>
+      </div>
+    </div>
+  </div>
+</div>

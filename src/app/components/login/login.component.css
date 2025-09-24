@@ -1,0 +1,28 @@
+.home-container {
+  text-align: center;
+  padding: 2rem;
+
+  .name-input-section {
+    margin-top: 2rem;
+
+    input {
+      padding: 0.6rem;
+      margin-right: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #66bb6a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background: #4caf50;
+      }
+    }
+  }
+}

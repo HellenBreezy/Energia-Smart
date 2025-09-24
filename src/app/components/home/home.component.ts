@@ -16,7 +16,7 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  userName = 'Hellen';
+  userName: string = '';
   totalConsumption = 0;
   appliancesCount = 0;
   selectedAppliance: Appliance | null = null;
@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const name = localStorage.getItem('userName');
+    this.userName = name ? name : '';
     this.currentTip = this.getRandomTip();
     this.energyService.totalConsumption$.subscribe(cons => this.totalConsumption = cons);
 

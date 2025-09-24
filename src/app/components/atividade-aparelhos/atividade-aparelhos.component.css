@@ -1,8 +1,8 @@
 .appliance-container {
-  max-width: 800px;
-  margin: 30px auto;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 .appliance-container h2 {

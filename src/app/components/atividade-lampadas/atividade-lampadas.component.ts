@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -9,7 +9,14 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './atividade-lampadas.component.html',
   styleUrl: './atividade-lampadas.component.css'
 })
-export class AtividadeLampadasComponent {
+export class AtividadeLampadasComponent implements OnInit{
+
+  userName: string = '';
+
+  ngOnInit(): void {
+    const name = localStorage.getItem('userName');
+    this.userName = name ? name : '';
+  }
 
   lamps = [
     {

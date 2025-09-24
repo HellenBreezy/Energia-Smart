@@ -15,6 +15,6 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   goHome() {
-    this.router.navigate(['/']); // ou a rota da sua home principal
+    this.router.navigate(['/home']); // ou a rota da sua home principal
   }
 }
