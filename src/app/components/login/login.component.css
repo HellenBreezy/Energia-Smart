@@ -1,8 +1,6 @@
 .home-container {
   text-align: center;
   padding: 2rem;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,9 +8,9 @@
 
   .name-input-section {
     margin-top: 2rem;
-    background: rgba(255, 255, 255, 0.8);
     padding: 2rem;
     border-radius: 20px;
+    background-color: #a1c4fd;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     width: 90%;
     max-width: 500px;
@@ -64,8 +62,17 @@
           transform: scale(1.1) rotate(-3deg);
           box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
+
+        &:disabled {
+          background: #ccc !important;
+          color: #666 !important;
+          cursor: not-allowed;
+          box-shadow: none !important;
+          transform: none !important;
+        }
       }
     }
+
 
     .characters {
       margin-top: 1.5rem;

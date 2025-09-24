@@ -1,17 +1,24 @@
 <div class="home-container">
-
-  <!-- Se o aluno ainda não digitou o nome -->
-  <div *ngIf="!userName" class="name-input-section">
+  <form #nameForm="ngForm" (ngSubmit)="onSubmit(nameForm)" class="name-input-section">
     <h2>👋 Olá, amigo!</h2>
     <p>Digite seu nome para começar a brincar com a Energia Smart:</p>
 
     <div class="input-wrapper">
-      <input 
-        type="text" 
-        [(ngModel)]="tempName" 
-        placeholder="Seu nome aqui" 
+      <input
+        name="tempName"
+        [(ngModel)]="tempName"
+        #nameModel="ngModel"
+        required
+        minlength="1"
+        placeholder="Seu nome aqui"
+        autocomplete="off"
       />
-      <button (click)="onClick()">🎉 Continuar</button>
+
+      <button type="submit" [disabled]="!nameForm.valid">🎉 CONTINUAR</button>
+    </div>
+
+    <div class="error" *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" aria-live="polite">
+      Por favor, digite seu nome para continuar 🙂
     </div>
 
     <div class="characters">
@@ -19,22 +26,5 @@
       <img src="/images/lampada.png" alt="Mascote 2">
       <img src="/images/lampada.png" alt="Mascote 3">
     </div>
-  </div>
-
-  <!-- Se já tem nome salvo -->
-  <div *ngIf="userName" class="welcome-section">
-    <div class="welcome-content">
-      <h1>Olá, {{ userName }}! 👋</h1>
-      <p>Bem-vindo ao <strong>Energia Smart</strong>, sua plataforma para aprender sobre energia de forma divertida!</p>
-    </div>
-
-    <!-- Dica do dia -->
-    <div class="tip-of-the-day">
-      <div class="tip-icon">💡</div>
-      <div class="tip-content">
-        <h3>Dica do Dia</h3>
-        <p>{{ currentTip }}</p>
-      </div>
-    </div>
-  </div>
+  </form>
 </div>

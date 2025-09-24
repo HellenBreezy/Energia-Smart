@@ -1,9 +1,9 @@
 .app-header {
   display: flex;
-  height: 40px;
   align-items: center;
   justify-content: flex-start;
   padding: 10px 20px;
+  height: 40px;
   background-color: #42a5f5;
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
