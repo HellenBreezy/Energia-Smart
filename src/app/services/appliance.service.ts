@@ -23,8 +23,8 @@ export class ApplianceService {
         selected: true,
         description: 'Televisores modernos consomem menos energia no modo de espera.',
         position: {
-          top: '25%',
-          left: '25%',
+          top: '5%',
+          left: '15%',
           background: 'linear-gradient(135deg, #ff9a8b 0%, #ff6a88 100%)'
         },
         room: 'Sala de Estar'
@@ -37,8 +37,8 @@ export class ApplianceService {
         selected: true,
         description: 'Geladeiras consomem mais energia quando a porta é aberta frequentemente.',
         position: {
-          top: '25%',
-          left: '70%',
+          top: '5%',
+          left: '50%',
           background: 'linear-gradient(135deg, #6ce4ff 0%, #42a5f5 100%)'
         },
         room: 'Cozinha'
@@ -51,8 +51,8 @@ export class ApplianceService {
         selected: true,
         description: 'Chuveiros elétricos são uns dos maiores consumidores de energia.',
         position: {
-          top: '70%',
-          left: '60%',
+          top: '78%',
+          left: '36%',
           background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
         },
         room: 'Banheiro'
@@ -65,8 +65,8 @@ export class ApplianceService {
         selected: true,
         description: 'Use a máquina com carga completa para economizar energia e água.',
         position: {
-          top: '70%',
-          left: '85%',
+          top: '75%',
+          left: '68%',
           background: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
         },
         room: 'Lavanderia'
@@ -79,8 +79,8 @@ export class ApplianceService {
         selected: true,
         description: 'Lâmpadas LED consomem até 80% menos que as incandescentes.',
         position: {
-          top: '70%',
-          left: '25%',
+          top: '78%',
+          left: '5%',
           background: 'linear-gradient(135deg, #ffe29f 0%, #ffa99f 100%)'
         },
         room: 'Quarto'
@@ -93,8 +93,8 @@ export class ApplianceService {
         selected: true,
         description: 'Manter o ar-condicionado a 23°C economiza energia.',
         position: {
-          top: '25%',
-          left: '85%',
+          top: '28%',
+          left: '60%',
           background: 'linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%)'
         },
         room: 'Sala de Estar'
@@ -107,8 +107,8 @@ export class ApplianceService {
         selected: true,
         description: 'Configure modo de economia de energia no seu computador.',
         position: {
-          top: '70%',
-          left: '40%',
+          top: '50%',
+          left: '36%',
           background: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)'
         },
         room: 'Quarto'
@@ -121,8 +121,8 @@ export class ApplianceService {
         selected: true,
         description: 'Desligue da tomada quando não estiver usando.',
         position: {
-          top: '25%',
-          left: '55%',
+          top: '28%',
+          left: '20%',
           background: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
         },
         room: 'Cozinha'
@@ -135,8 +135,8 @@ export class ApplianceService {
         selected: true,
         description: 'Use por curtos períodos para economizar energia.',
         position: {
-          top: '40%',
-          left: '63%',
+          top: '50%',
+          left: '68%',
           background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
         },
         room: 'Cozinha'
@@ -150,7 +150,7 @@ export class ApplianceService {
         description: 'Use na potência mais baixa possível.',
         position: {
           top: '55%',
-          left: '10%',
+          left: '5%',
           background: 'linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%)'
         },
         room: 'Banheiro'

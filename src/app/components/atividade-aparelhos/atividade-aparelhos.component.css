@@ -3,64 +3,129 @@
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+  text-align: center;
 }
 
-.appliance-container h2 {
+.intro h2 {
   font-size: 1.8rem;
   color: #2c5530;
   margin-bottom: 10px;
 }
 
-.appliance-container p {
+.intro p {
   font-size: 1.1rem;
   margin-bottom: 25px;
   color: #555;
 }
 
+/* Grid de aparelhos */
 .appliances {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-bottom: 60px;
 }
 
 .device {
   cursor: pointer;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(0) scale(1);
+  will-change: transform;          
+  backface-visibility: hidden;     
 }
+
+.device.clicked {
+  transform: translateY(-10px) scale(1.08);
+}
+
+/* Spark e hover continuam iguais */
 
 .device:hover {
   transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.device-img-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
 }
 
 .device-img {
-  width: 80px;
-  height: 80px;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  margin-bottom: 8px;
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .device.off img {
   filter: grayscale(100%) brightness(60%);
+  transform: scale(0.95);
 }
 
+/* Efeito de faísca */
+.spark {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ffeb3b 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: sparkAnim 0.5s ease-out forwards;
+  z-index: 2;
+}
+
+@keyframes sparkAnim {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+/* Efeito de clique no card */
+.device.clicked {
+  transform: translateY(-10px) scale(1.08);
+  transition: transform 0.2s ease;
+}
+
+/* Dicas */
 .tips {
   margin-bottom: 20px;
   font-style: italic;
   color: #2c5530;
+  animation: fadeIn 0.5s ease;
 }
 
+/* Botão reiniciar */
 .reset-btn {
-  padding: 12px 20px;
-  background: #ffde59;
-  color: #1a5f7a;
+  margin-top: 25px;
+  padding: 12px 100px;
+  background: #ffb703;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s;
+  font-size: 20px;
+
+  &:hover {
+    background: #fb8500;
+  }
 }
 
 .reset-btn:hover {
@@ -68,3 +133,54 @@
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+
+.tip-of-the-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fffbe6;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #2c5530;
+  animation: fadeIn 0.5s ease;
+  margin: 50px
+}
+
+.tip-icon {
+  font-size: 24px;
+}
+
+.tip-content p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .intro h2 { font-size: 1.5rem; }
+  .intro p { font-size: 1rem; }
+  .appliances { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
+  .device-img-wrapper { width: 60px; height: 60px; }
+  .device-name { font-size: 0.9rem; }
+  .tip-of-the-day { margin: 10px }
+}
+
+@media (max-width: 480px) {
+  .intro h2 { font-size: 1.3rem; }
+  .intro p { font-size: 0.95rem; }
+  .appliances { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 12px; }
+  .device-img-wrapper { width: 50px; height: 50px; }
+  .device-name { font-size: 0.85rem; }
+  /* .reset-btn { padding: 10px 20px; font-size: 0.95rem; }*/
+  .tip-of-the-day { margin: 0px }
+} 
+

@@ -1,5 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+interface Calculation {
+  appliance: string;
+  power: number;
+  hoursPerDay: number;
+  daysPerMonth: number;
+  consumptionKWh: number;
+  cost: number;
+}
 
 @Component({
   selector: 'app-summary-panel',
@@ -11,15 +20,11 @@ import { CommonModule } from '@angular/common';
 export class SummaryPanelComponent {
   @Input() totalConsumption: number = 0;
   @Input() appliancesCount: number = 0;
+  @Input() totalCost: number = 0;
 
   getConsumptionComparison(): string {
-    const averageConsumption = 5; // kWh/dia
-    const comparison = ((this.totalConsumption / averageConsumption) * 100).toFixed(0);
-    
-    if (this.totalConsumption < averageConsumption) {
-      return `${comparison}% abaixo da média`;
-    } else {
-      return `${comparison}% acima da média`;
-    }
+    if (this.totalConsumption > 250) return 'Alto consumo ⚠️';
+    if (this.totalConsumption > 150) return 'Médio consumo ⚡';
+    return 'Baixo consumo 🌱';
   }
 }

@@ -1,33 +1,131 @@
 .home-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   font-family: Arial, sans-serif;
 }
 
+.home-container-main{
+  padding: 0px 20px 20px 20px;
+}
+/* Seção de boas-vindas */
 .welcome-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  margin: 30px 0;
   flex-wrap: wrap;
 }
 
+.welcome-content {
+  flex: 1 1 300px;
+  min-width: 250px;
+}
+
+.welcome-content h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #1a5f7a;
+}
+
+.welcome-content p {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Dica do dia */
 .tip-of-the-day {
+  flex: 1 1 250px;
   display: flex;
   align-items: center;
   gap: 10px;
   background: #fffbe6;
   padding: 15px;
   border-radius: 8px;
+  min-width: 250px;
 }
 
 .tip-icon {
   font-size: 30px;
 }
 
+/* Seção interativa */
 .interactive-section {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin: 30px 0 20px;
+}
+
+.interactive-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.interactive-section p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Modal e Summary já possuem responsividade interna */
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+
+  .welcome-content {
+  flex: 0;
+  min-width: 250px;
+  }
+
+  .welcome-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .tip-of-the-day {
+    width: 100%;
+  }
+
+  .interactive-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .interactive-section p {
+    font-size: 1.2rem;
+  }
+  
+  .home-container-main{
+    padding: 10px 20px;
+  }
+
+  .home-container {
+    padding: 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 30px;
+  }
+
+  .welcome-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-content p {
+    font-size: 1.2rem;
+  }
+
+  .tip-of-the-day {
+    flex-direction: row;
+    font-size: 1.2rem;
+    padding: 10px;
+    width: auto;
+  }
+
+  .home-container-main{
+    padding: 10px 20px;
+  }
+
+  .home-container {
+    padding: 0px;
+  }
 }

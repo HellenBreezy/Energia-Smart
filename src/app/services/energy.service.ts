@@ -22,7 +22,7 @@ export class EnergyService {
   totalConsumption$ = this.totalConsumption.asObservable();
   totalCost$ = this.totalCost.asObservable();
 
-  private readonly pricePerKWh = 0.75; // R$ por kWh
+  private readonly pricePerKWh = 0.67; // R$ por kWh
 
   constructor() {
     this.loadFromLocalStorage();
@@ -37,21 +37,43 @@ export class EnergyService {
     return consumptionKWh * this.pricePerKWh;
   }
 
-  addCalculation(calculation: Omit<EnergyCalculation, 'consumptionKWh' | 'cost' | 'timestamp'>) {
-    const consumptionKWh = this.calculateConsumption(calculation.power, calculation.hoursPerDay, calculation.daysPerMonth);
+  addCalculation(calc: { appliance: string, power: number, hoursPerDay: number, daysPerMonth: number }) {
+    // Carrega do localStorage
+    const stored = localStorage.getItem('energyCalculations');
+    let calculations: EnergyCalculation[] = stored ? JSON.parse(stored) : [];
+
+    // Verifica se já existe um cálculo para esse aparelho
+    const existingIndex = calculations.findIndex(c => c.appliance === calc.appliance);
+
+    const consumptionKWh = this.calculateConsumption(calc.power, calc.hoursPerDay, calc.daysPerMonth);
     const cost = this.calculateCost(consumptionKWh);
 
-    const newCalculation: EnergyCalculation = {
-      ...calculation,
-      consumptionKWh,
-      cost,
-      timestamp: new Date()
+    const newCalc: EnergyCalculation = { 
+      ...calc, 
+      consumptionKWh, 
+      cost, 
+      timestamp: new Date() 
     };
 
-    this.calculations.push(newCalculation);
+    if (existingIndex !== -1) {
+      // Atualiza cálculo existente
+      calculations[existingIndex] = newCalc;
+    } else {
+      // Adiciona novo cálculo
+      calculations.push(newCalc);
+    }
+
+    // Atualiza a propriedade interna
+    this.calculations = calculations;
+
+    // Salva de volta no localStorage
+    localStorage.setItem('energyCalculations', JSON.stringify(calculations));
+
+    // Atualiza os observables
     this.updateTotals();
-    this.saveToLocalStorage();
   }
+
+
 
   private updateTotals() {
     const total = this.calculations.reduce((sum, c) => sum + c.consumptionKWh, 0);

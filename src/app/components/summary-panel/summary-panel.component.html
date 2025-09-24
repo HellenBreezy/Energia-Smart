@@ -6,7 +6,7 @@
       <div class="card-icon">⚡</div>
       <div class="card-content">
         <h3>Consumo Total</h3>
-        <div class="value">{{ (totalConsumption * 1000).toFixed(0) }} W</div>
+        <div class="value">{{ totalConsumption.toFixed(2) }} kWh</div>
         <p class="comparison">{{ getConsumptionComparison() }}</p>
       </div>
     </div>
@@ -24,10 +24,9 @@
       <div class="card-icon">💸</div>
       <div class="card-content">
         <h3>Valor Gasto</h3>
-        <div class="value">R$ {{ (totalConsumption * 0.75).toFixed(2) }}</div>
+        <div class="value">R$ {{ totalCost.toFixed(2) }}</div>
         <p class="period">este mês</p>
       </div>
     </div>
-
   </div>
 </div>

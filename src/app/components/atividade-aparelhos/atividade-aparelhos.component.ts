@@ -11,10 +11,10 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class AtividadeAparelhosComponent {
   devices = [
-    { name: 'TV', on: true, imgOn: '/images/tv.png', imgOff: 'assets/tv_off.png' },
-    { name: 'Computador', on: true, imgOn: '/images/computador.png', imgOff: 'assets/pc_off.png' },
-    { name: 'Micro-ondas', on: true, imgOn: '/images/microondas.png', imgOff: 'assets/microwave_off.png' },
-    { name: 'Carregador', on: true, imgOn: '/images/carregador.png', imgOff: 'assets/charger_off.png' }
+    { name: 'TV', on: true, imgOn: '/images/tv.png', imgOff: 'images/tv-off.png', clicked: false },
+    { name: 'Computador', on: true, imgOn: '/images/computador.png', imgOff: 'images/computador-off.png', clicked: false },
+    { name: 'Micro-ondas', on: true, imgOn: '/images/microondas.png', imgOff: 'images/microondas-off.png', clicked: false},
+    { name: 'Carregador', on: true, imgOn: '/images/carregador.png', imgOff: 'images/carregador-off.png', clicked: false }
   ];
 
   tips = [
@@ -27,14 +27,22 @@ export class AtividadeAparelhosComponent {
   currentTip = '';
 
   toggleDevice(index: number) {
-    if (this.devices[index].on) {
-      this.devices[index].on = false;
-      this.currentTip = this.tips[Math.floor(Math.random() * this.tips.length)];
-    }
+    const device = this.devices[index];
+    device.clicked = true;
+    device.on = false;
+    this.currentTip = this.tips[Math.floor(Math.random() * this.tips.length)];
+
+    requestAnimationFrame(() => {
+      setTimeout(() => device.clicked = false, 500);
+    });
   }
 
   resetDevices() {
-    this.devices.forEach(device => device.on = true);
+    this.devices.forEach(device => {
+      device.on = true;
+      device.clicked = false;
+    });
     this.currentTip = '';
   }
+
 }

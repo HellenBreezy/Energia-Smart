@@ -2,21 +2,30 @@
 
   <!-- Se o aluno ainda não digitou o nome -->
   <div *ngIf="!userName" class="name-input-section">
-    <h2>👋 Bem-vindo!</h2>
-    <p>Digite seu nome para começar:</p>
-    <input 
-      type="text" 
-      [(ngModel)]="tempName" 
-      placeholder="Seu nome aqui" 
-    />
-    <button (click)="onClick()">Continuar</button>
+    <h2>👋 Olá, amigo!</h2>
+    <p>Digite seu nome para começar a brincar com a Energia Smart:</p>
+
+    <div class="input-wrapper">
+      <input 
+        type="text" 
+        [(ngModel)]="tempName" 
+        placeholder="Seu nome aqui" 
+      />
+      <button (click)="onClick()">🎉 Continuar</button>
+    </div>
+
+    <div class="characters">
+      <img src="/images/lampada.png" alt="Mascote 1">
+      <img src="/images/lampada.png" alt="Mascote 2">
+      <img src="/images/lampada.png" alt="Mascote 3">
+    </div>
   </div>
 
   <!-- Se já tem nome salvo -->
   <div *ngIf="userName" class="welcome-section">
     <div class="welcome-content">
       <h1>Olá, {{ userName }}! 👋</h1>
-      <p>Bem-vindo ao Energia Smart - sua plataforma para consumo consciente de energia</p>
+      <p>Bem-vindo ao <strong>Energia Smart</strong>, sua plataforma para aprender sobre energia de forma divertida!</p>
     </div>
 
     <!-- Dica do dia -->

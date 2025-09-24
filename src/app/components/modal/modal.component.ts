@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EnergyService } from '../../services/energy.service';
@@ -11,7 +11,7 @@ import { Appliance } from '../house-scene/house-scene.component';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent {
+export class ModalComponent implements OnChanges{
   @Input() appliance: Appliance | null = null;
   @Input() visible = false;
   @Output() visibleChange = new EventEmitter<boolean>();
@@ -26,15 +26,16 @@ export class ModalComponent {
 
   constructor(private energyService: EnergyService) {}
 
-  onClose() {
-    this.visible = false;
-    this.visibleChange.emit(false);
-    this.resetForm();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['appliance'] && this.appliance) {
+      this.loadApplianceValues();
+    }
   }
 
+
   isFormValid(): boolean {
-  return !!this.appliance && this.power > 0 && this.hoursPerDay > 0 && this.daysPerMonth > 0;
-}
+    return !!this.appliance && this.power > 0 && this.hoursPerDay > 0 && this.daysPerMonth > 0;
+  }
 
   onCalculate() {
     if (this.isFormValid()) {
@@ -57,8 +58,17 @@ export class ModalComponent {
     }
   }
 
+  onClose() {
+    this.visible = false;
+    this.visibleChange.emit(false);
+    // Removido o resetForm() daqui
+  }
+
   onCalculateAgain() {
-    this.resetForm();
+    // Só limpa os resultados de cálculo, mantendo os valores dos inputs
+    this.consumption = 0;
+    this.cost = 0;
+    this.calculated = false;
   }
 
   private resetForm() {
@@ -69,4 +79,31 @@ export class ModalComponent {
     this.cost = 0;
     this.calculated = false;
   }
+
+  private loadApplianceValues() {
+    const stored = localStorage.getItem('energyCalculations');
+    let calculations: any[] = stored ? JSON.parse(stored) : [];
+
+    // Procura se já existe cálculo para este aparelho
+    const existing = calculations.find(c => c.appliance === this.appliance!.name);
+
+    if (existing) {
+      // Se existir, carrega os valores
+      this.power = existing.power;
+      this.hoursPerDay = existing.hoursPerDay;
+      this.daysPerMonth = existing.daysPerMonth;
+      this.consumption = existing.consumptionKWh;
+      this.cost = existing.cost;
+      this.calculated = true;
+    } else {
+      // Se não existir, mantém os campos padrão
+      this.power = 0;
+      this.hoursPerDay = 0;
+      this.daysPerMonth = 30;
+      this.consumption = 0;
+      this.cost = 0;
+      this.calculated = false;
+    }
+  }
+  
 }

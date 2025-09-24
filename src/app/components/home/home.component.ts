@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   userName: string = '';
   totalConsumption = 0;
   appliancesCount = 0;
+  totalCost = 0;
   selectedAppliance: Appliance | null = null;
 
   availableAppliances: Appliance[] = [];
@@ -43,13 +44,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const name = localStorage.getItem('userName');
-    this.userName = name ? name : '';
+    localStorage.removeItem('energyCalculations');
+    this.userName = name ?? '';
     this.currentTip = this.getRandomTip();
+
+    // Subscreve no observable de consumo e custo
     this.energyService.totalConsumption$.subscribe(cons => this.totalConsumption = cons);
+    this.energyService.totalCost$.subscribe(cost => this.totalCost = cost);
 
     // Carrega os appliances do service
     this.availableAppliances = this.applianceService.getAppliances().map(a => ({ ...a, selected: true }));
   }
+
 
   openApplianceSelector() {
     this.modalVisibleSelector = true;

@@ -1,6 +1,9 @@
-<div class="home-container">
-
+<div class="home-container-main">
   <app-header title="Detalhes do Eletrodoméstico"></app-header>
+
+  <div class="home-container">
+
+  </div>
 
   <!-- Seção de boas-vindas -->
   <div class="welcome-section">
@@ -18,17 +21,13 @@
   </div>
 
   <!-- Modal de detalhe do appliance -->
-  <app-modal
-    [appliance]="selectedAppliance"
-    [visible]="modalVisibleDetail"
+  <app-modal [appliance]="selectedAppliance" [visible]="modalVisibleDetail"
     (visibleChange)="onModalVisibleChange($event)">
   </app-modal>
 
   <!-- Modal de seleção de appliances -->
-  <app-modal-appliance-selector
-    *ngIf="modalVisibleSelector && availableAppliances?.length"
-    [appliances]="availableAppliances"
-    (selectionConfirmed)="onApplianceSelectionConfirmed($event)"
+  <app-modal-appliance-selector *ngIf="modalVisibleSelector && availableAppliances?.length"
+    [appliances]="availableAppliances" (selectionConfirmed)="onApplianceSelectionConfirmed($event)"
     (close)="modalVisibleSelector = false">
   </app-modal-appliance-selector>
 
@@ -40,17 +39,17 @@
   <!-- Painel de resumo -->
   <app-summary-panel 
     [totalConsumption]="totalConsumption" 
-    [appliancesCount]="appliancesCount">
+    [appliancesCount]="appliancesCount" 
+    [totalCost]="totalCost">
   </app-summary-panel>
+
 
   <!-- Seção interativa com HouseScene -->
   <div class="interactive-section">
     <h2>Clique nos Eletrodomésticos</h2>
     <p>Selecione um eletrodoméstico para calcular seu consumo de energia</p>
-    
-    <app-house-scene
-      [appliances]="displayedAppliances"
-      (applianceSelected)="onApplianceSelected($event)">
+
+    <app-house-scene [appliances]="displayedAppliances" (applianceSelected)="onApplianceSelected($event)">
     </app-house-scene>
   </div>
 </div>

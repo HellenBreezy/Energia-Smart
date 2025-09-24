@@ -1,23 +1,32 @@
 <div class="appliance-container">
   <app-header title="Detalhes do Eletrodoméstico"></app-header>
 
-  <h2>🔌 Desligue os aparelhos em stand-by!</h2>
-  <p>Clique nos aparelhos para economizar energia.</p>
+  <div class="intro">
+    <h2>🔌 Desligue os aparelhos em stand-by!</h2>
+    <p>Clique nos aparelhos para economizar energia.</p>
+  </div>
 
   <div class="appliances">
     <div *ngFor="let device of devices; let i = index" 
-         class="device" 
-         [class.off]="!device.on" 
-         (click)="toggleDevice(i)">
-      <img [src]="device.on ? device.imgOn : device.imgOff" 
-           [alt]="device.name" 
-           class="device-img">
-      <p>{{ device.name }}</p>
+        class="device" 
+        [class.off]="!device.on" 
+        [class.clicked]="device.clicked"
+        (click)="toggleDevice(i)">
+      <div class="device-img-wrapper">
+        <img [src]="device.on ? device.imgOn : device.imgOff" 
+            [alt]="device.name" 
+            class="device-img">
+        <div class="spark" *ngIf="device.clicked"></div>
+      </div>
+      <p class="device-name">{{ device.name }}</p>
     </div>
   </div>
 
-  <div class="tips" *ngIf="currentTip">
-    <p>{{ currentTip }}</p>
+  <div class="tip-of-the-day" *ngIf="currentTip">
+    <div class="tip-icon">💡</div>
+    <div class="tip-content">
+      <p>{{ currentTip }}</p>
+    </div>
   </div>
 
   <button class="reset-btn" (click)="resetDevices()">🔄 Reiniciar</button>

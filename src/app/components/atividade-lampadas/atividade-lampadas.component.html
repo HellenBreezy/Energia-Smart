@@ -1,32 +1,47 @@
-<div class="lamp-container">
-  <div class="lamp-container-div">
-    <app-header title=""></app-header>
+<div class="home-container-main">
+  <app-header title="Energia Smart"></app-header>
 
+  <div class="home-container">
     <div class="content-container">
-      <!-- Seção de boas-vindas -->
-      <div class="welcome-section">
-        <div class="welcome-content">
-          <h1>Olá, {{ userName }}! 👋</h1>
-          <p>Bem-vinda ao Energia Smart - sua plataforma para consumo consciente de energia</p>
-        </div>
+    <!-- Seção de boas-vindas -->
+    <div class="welcome-section">
+      <div class="welcome-content">
+        <h1>Olá, {{ userName }}! 👋</h1>
+        <p>
+          Bem-vinda ao <strong>Energia Smart</strong> — sua plataforma para
+          consumo consciente de energia ⚡
+        </p>
       </div>
-
-      <h2>💡 Apague as lâmpadas!</h2>
-      <p>Clique para apagar e veja dicas de economia.</p>
-
-      <div class="lamps">
-        <div *ngFor="let lamp of lamps; let i = index" class="lamp" [class.off]="!lamp.on" (click)="toggleLamp(i)">
-          <img [src]="lamp.on ? lamp.onImage : lamp.offImage" [alt]="lamp.name" width="50" height="50">
-        </div>
-      </div>
-
-      <div class="tips" *ngIf="currentTip">
-        <p>{{ currentTip }}</p>
-      </div>
-
-      <button class="reset-btn" (click)="resetLamps()">Reiniciar</button>
     </div>
 
-  </div>
+    <!-- Seção das lâmpadas -->
+    <section class="lamps-section">
+      <h2>💡 Apague as lâmpadas!</h2>
+      <p>Clique para apagar e descubra dicas de economia.</p>
 
+      <div class="lamps">
+        <div
+          *ngFor="let lamp of lamps; let i = index"
+          class="lamp-card"
+          [class.off]="!lamp.on"
+          (click)="toggleLamp(i)"
+        >
+          <img
+            [src]="lamp.on ? lamp.onImage : lamp.offImage"
+            [alt]="lamp.name"
+          />
+          <span>{{ lamp.name }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dicas -->
+    <div class="tips" *ngIf="currentTip">
+      <p>✨ {{ currentTip }}</p>
+    </div>
+
+    <button class="reset-btn" (click)="resetLamps()">🔄 Reiniciar</button>
+  </div>
+  </div>
+  
 </div>

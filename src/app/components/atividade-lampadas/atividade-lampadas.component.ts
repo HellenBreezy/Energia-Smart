@@ -21,31 +21,31 @@ export class AtividadeLampadasComponent implements OnInit{
   lamps = [
     {
       name: 'Lâmpada Sala',
-      on: false,
+      on: true,
       onImage: '/images/lampada.png',
       offImage: '/images/lampada-no-color.png'
     },
     {
       name: 'Lâmpada Quarto',
-      on: false,
+      on: true,
       onImage: '/images/lampada.png',
       offImage: '/images/lampada-no-color.png'
     },
     {
       name: 'Lâmpada Sala',
-      on: false,
+      on: true,
       onImage: '/images/lampada.png',
       offImage: '/images/lampada-no-color.png'
     },
     {
       name: 'Lâmpada Quarto',
-      on: false,
+      on: true,
       onImage: '/images/lampada.png',
       offImage: '/images/lampada-no-color.png'
     },
     {
       name: 'Lâmpada Sala',
-      on: false,
+      on: true,
       onImage: '/images/lampada.png',
       offImage: '/images/lampada-no-color.png'
     }
