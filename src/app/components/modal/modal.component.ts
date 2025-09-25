@@ -55,6 +55,7 @@ export class ModalComponent implements OnChanges{
       });
 
       this.calculated = true;
+      this.calculationsChanged.emit();
     }
   }
 
