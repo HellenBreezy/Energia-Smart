@@ -20,12 +20,15 @@
     </div>
   </div>
 
-  <!-- Modal de detalhe do appliance -->
-  <app-modal [appliance]="selectedAppliance" [visible]="modalVisibleDetail"
-    (visibleChange)="onModalVisibleChange($event)">
+  <!-- Modal de informações do consumo -->
+  <app-modal 
+    [appliance]="selectedAppliance" 
+    [visible]="modalVisibleDetail"
+    (visibleChange)="onModalVisibleChange($event)"
+    (calculationsChanged)="onCalculationsChanged()">
   </app-modal>
 
-  <!-- Modal de seleção de appliances -->
+  <!-- Modal de seleção de eletrodomesticos -->
   <app-modal-appliance-selector *ngIf="modalVisibleSelector && availableAppliances?.length"
     [appliances]="availableAppliances" (selectionConfirmed)="onApplianceSelectionConfirmed($event)"
     (close)="modalVisibleSelector = false">

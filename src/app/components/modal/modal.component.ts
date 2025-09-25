@@ -15,6 +15,7 @@ export class ModalComponent implements OnChanges{
   @Input() appliance: Appliance | null = null;
   @Input() visible = false;
   @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() calculationsChanged = new EventEmitter<void>();
 
   power: number = 0;
   hoursPerDay: number = 0;
@@ -31,7 +32,6 @@ export class ModalComponent implements OnChanges{
       this.loadApplianceValues();
     }
   }
-
 
   isFormValid(): boolean {
     return !!this.appliance && this.power > 0 && this.hoursPerDay > 0 && this.daysPerMonth > 0;
@@ -71,6 +71,29 @@ export class ModalComponent implements OnChanges{
     this.calculated = false;
   }
 
+  onDelete() {
+    const stored = localStorage.getItem('energyCalculations');
+    let calculations: any[] = stored ? JSON.parse(stored) : [];
+
+    // Remove o cálculo do aparelho atual
+    calculations = calculations.filter(c => c.appliance !== this.appliance!.name);
+
+    // Atualiza o localStorage
+    localStorage.setItem('energyCalculations', JSON.stringify(calculations));
+
+    // Reseta os valores mantendo watts padrão
+    this.power = this.appliancePowerMap[this.appliance!.name] || 0;
+    this.hoursPerDay = 0;
+    this.daysPerMonth = 30;
+    this.consumption = 0;
+    this.cost = 0;
+    this.calculated = false;
+
+    // Notifica o pai que houve alteração
+    this.calculationsChanged.emit();
+  }
+
+
   private resetForm() {
     this.power = this.appliance?.power || 0;
     this.hoursPerDay = 0;
@@ -80,6 +103,19 @@ export class ModalComponent implements OnChanges{
     this.calculated = false;
   }
 
+  private appliancePowerMap: { [key: string]: number } = {
+    'TV': 48,
+    'Micro-ondas': 1200,
+    'Geladeira': 100,
+    'Ar-Condicionado': 2600,
+    'Liquidificador': 400,
+    'Secador de Cabelo': 1000,
+    'Computador': 600,
+    'Lâmpada': 10,
+    'Chuveiro': 6800,
+    'Máquina de Lavar': 800
+  };
+
   private loadApplianceValues() {
     const stored = localStorage.getItem('energyCalculations');
     let calculations: any[] = stored ? JSON.parse(stored) : [];
@@ -88,7 +124,7 @@ export class ModalComponent implements OnChanges{
     const existing = calculations.find(c => c.appliance === this.appliance!.name);
 
     if (existing) {
-      // Se existir, carrega os valores
+      // Se existir, carrega os valores salvos
       this.power = existing.power;
       this.hoursPerDay = existing.hoursPerDay;
       this.daysPerMonth = existing.daysPerMonth;
@@ -96,8 +132,8 @@ export class ModalComponent implements OnChanges{
       this.cost = existing.cost;
       this.calculated = true;
     } else {
-      // Se não existir, mantém os campos padrão
-      this.power = 0;
+      // Se não existir, usa valor padrão do mapa
+      this.power = this.appliancePowerMap[this.appliance!.name] || 0;
       this.hoursPerDay = 0;
       this.daysPerMonth = 30;
       this.consumption = 0;
@@ -105,5 +141,6 @@ export class ModalComponent implements OnChanges{
       this.calculated = false;
     }
   }
+
   
 }

@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
 
     // Carrega os appliances do service
     this.availableAppliances = this.applianceService.getAppliances().map(a => ({ ...a, selected: true }));
+    this.recalculateTotals();
   }
-
 
   openApplianceSelector() {
     this.modalVisibleSelector = true;
@@ -88,5 +88,19 @@ export class HomeComponent implements OnInit {
   getApplianceRoom(applianceId: string): string {
     const appliance = this.displayedAppliances.find(a => a.id === applianceId);
     return appliance ? appliance.room : 'Cômodo não especificado';
+  }
+
+  recalculateTotals() {
+    const stored = localStorage.getItem('energyCalculations');
+    const calculations: any[] = stored ? JSON.parse(stored) : [];
+
+    this.appliancesCount = calculations.length;
+    this.totalConsumption = calculations.reduce((sum, c) => sum + (c.consumptionKWh || 0), 0);
+    this.totalCost = calculations.reduce((sum, c) => sum + (c.cost || 0), 0);
+  }
+
+  // Chamado quando o modal dispara o evento
+  onCalculationsChanged() {
+    this.recalculateTotals();
   }
 }
